@@ -135,7 +135,7 @@
     .hero-title {
       font-size: clamp(38px, 5.8vw, 80px);
       font-weight: 800;
-      line-height: 1.08;
+      line-height: 1.35;
       letter-spacing: -.03em;
       word-break: keep-all;
     }
@@ -298,7 +298,7 @@
       font-size: 22px;
       font-weight: 800;
       letter-spacing: -.03em;
-      line-height: 1.25;
+      line-height: 1.35;
       margin-bottom: 14px;
     }
 
@@ -647,6 +647,123 @@
     }
 
     /* ══════════════════════════════════════════════════════════
+       CARD 5 MODAL — 우리농산물마켓 전용
+    ══════════════════════════════════════════════════════════ */
+    #modal5Overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(51,56,61,.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .4s var(--ease-out), visibility .4s;
+    }
+    #modal5Overlay.open { opacity: 1; visibility: visible; }
+
+    .modal5 {
+      background: var(--bg);
+      border-radius: var(--r-lg);
+      width: 90%;
+      max-width: 1100px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(32px) scale(.97);
+      transition: transform .45s var(--ease-out);
+    }
+    #modal5Overlay.open .modal5 { transform: translateY(0) scale(1); }
+    .modal5::-webkit-scrollbar { width: 4px; }
+    .modal5::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+    .modal5-close {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; justify-content: flex-end;
+      padding: 18px 18px 0; pointer-events: none;
+    }
+    .modal5-close button {
+      pointer-events: all;
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(244,250,255,.85);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ink);
+      transition: background .2s, transform .2s;
+    }
+    .modal5-close button:hover { background: var(--ink); color: var(--bg); transform: rotate(90deg); }
+
+    .modal5-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: 0 32px 40px;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .modal5-layout { grid-template-columns: 1fr; padding: 0 20px 32px; }
+    }
+
+    .modal5-img-col { padding-right: 32px; padding-top: 4px; }
+    @media (max-width: 768px) { .modal5-img-col { padding-right: 0; padding-bottom: 24px; } }
+
+    .modal5-img-wrap {
+      width: 100%; aspect-ratio: 4 / 3;
+      border-radius: var(--r-md);
+      background: #1e3a2a;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 12px; overflow: hidden;
+    }
+    .modal5-img-wrap img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--r-md); display: block; }
+    .modal5-img-placeholder-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); }
+
+    .modal5-info-col {
+      padding-top: 4px;
+      border-left: 1px solid var(--border);
+      padding-left: 32px;
+      display: flex; flex-direction: column; gap: 22px;
+    }
+    @media (max-width: 768px) { .modal5-info-col { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 24px; } }
+
+    .modal5-project-title {
+      font-size: clamp(22px, 2.6vw, 32px);
+      font-weight: 800; letter-spacing: -.03em;
+      color: #2E7D54; line-height: 1.2;
+    }
+
+    .modal5-meta-table { display: flex; flex-direction: column; gap: 12px; }
+    .modal5-meta-row { display: grid; grid-template-columns: 80px 1fr; gap: 12px; align-items: start; }
+    .modal5-meta-key { font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--ink-light); padding-top: 2px; }
+    .modal5-meta-val { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.55; }
+
+    .modal5-desc {
+      font-size: 13.5px; line-height: 1.8;
+      color: var(--ink-light); word-break: keep-all;
+      border-top: 1px solid var(--border); padding-top: 20px;
+    }
+
+    .modal5-btns { display: flex; gap: 12px; padding-top: 4px; }
+    .modal5-btn {
+      flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 13px 18px; border-radius: var(--r-sm);
+      font-size: 13px; font-weight: 700; letter-spacing: .03em;
+      text-decoration: none; cursor: pointer;
+      transition: background .2s, color .2s, transform .2s var(--ease-out), box-shadow .2s;
+      border: none;
+    }
+    .modal5-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(51,56,61,.12); }
+    .modal5-btn-outline { background: var(--card-bg); color: var(--ink); border: 1px solid var(--border); }
+    .modal5-btn-outline:hover { background: var(--card-hover); }
+    .modal5-btn-fill { background: #2E7D54; color: #fff; }
+    .modal5-btn-fill:hover { background: #246644; }
+
+    /* ══════════════════════════════════════════════════════════
        FOOTER
     ══════════════════════════════════════════════════════════ */
     .site-footer {
@@ -755,8 +872,8 @@
         Brand Commerce Designer · 11 Years
       </p>
       <h1 class="hero-title fade-up">
-        기획부터 세일즈까지<br>
-        <em>설계하는</em> 11년 차<br>
+        일관된 시스템으로<br>
+        <em>가치를 더하는</em> 11년 차<br>
         브랜드 커머스 디자이너
       </h1>
     </div>
@@ -771,7 +888,7 @@
         Scroll
       </button>
       <p class="hero-contact">
-        <a href="mailto:your@email.com">your@email.com</a>
+        <a href="/cdn-cgi/l/email-protection#7c0513090e3c19111d1510521f1311"><span class="__cf_email__" data-cfemail="7b1c171a1f1a151f3b151a0d1e0955181416">[email&#160;protected]</span></a>
       </p>
     </div>
   </section>
@@ -785,13 +902,14 @@
       <!-- Card 1: Bio -->
       <article class="card card-1" data-index="0" onclick="openModal(0)">
         <div class="card-tag">About</div>
-        <h2>브랜드와<br>비즈니스를<br>함께 씁니다</h2>
-        <p>브랜드 아이덴티티부터 커머스 전환까지, 11년간 디자인이 매출이 되는 구조를 만들어왔습니다.</p>
+        <h2>시각적 스토리텔링으로<br>브랜드의 가치를 완성합니다.</h2>
+        <p>11년 차의 전문성으로 오프라인 패키지와 온라인 상세페이지를 아우르는 통합 브랜딩을 지향합니다.</p>
         <div class="career-chips">
+          <span class="chip">Core Skills</span>
           <span class="chip">Brand Identity</span>
           <span class="chip">Commerce UX</span>
-          <span class="chip">Campaign</span>
           <span class="chip">Art Direction</span>
+          <span class="chip">Visual Solution</span>
         </div>
         <div class="card-overlay" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
           <span class="view-hint">
@@ -813,7 +931,7 @@
           </div>
           <span class="img-placeholder-label">이미지를 추가하세요</span>
         </div>
-        <span class="card-badge">Main Work</span>
+        <span class="card-badge">Hanger Brand Renewal</span>
         <div class="card-work-label">01</div>
         <div class="card-overlay">
           <span class="view-hint">
@@ -836,8 +954,8 @@
           <span class="img-placeholder-label">이미지를 추가하세요</span>
         </div>
         <div class="card-work-meta">
-          <p class="work-title">Project Title 02</p>
-          <p class="work-cat">Brand Identity</p>
+          <p class="work-title">Toy Packaging</p>
+          <p class="work-cat">헬로카봇, 티티체리, 소피루비 패키지 디자인</p>
         </div>
         <div class="card-overlay" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
           <span class="view-hint">
@@ -860,8 +978,8 @@
           <span class="img-placeholder-label dark">이미지를 추가하세요</span>
         </div>
         <div class="card-work-meta light">
-          <p class="work-title dark">Project Title 03</p>
-          <p class="work-cat dark">Commerce UX</p>
+          <p class="work-title dark">Package Design Archive</p>
+          <p class="work-cat dark">일상의 다양한 제품군 패키지 디자인</p>
         </div>
         <div class="card-overlay" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
           <span class="view-hint" style="color:var(--ink);background:rgba(51,56,61,.08);">
@@ -872,7 +990,7 @@
       </article>
 
       <!-- Card 5 -->
-      <article class="card card-5" data-index="4" onclick="openModal(4)">
+      <article class="card card-5" data-index="4" onclick="openModal5()">
         <div class="card-img-placeholder">
           <div class="placeholder-icon">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -881,11 +999,11 @@
               <path d="M2 15l4.5-4 4 3 2.5-2.5 5 3.5" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <span class="img-placeholder-label">이미지를 추가하세요</span>
+          <span class="img-placeholder-label">이미지를 추가하세</span>
         </div>
         <div class="card-work-meta">
-          <p class="work-title">Project Title 04</p>
-          <p class="work-cat">Campaign</p>
+          <p class="work-title">Fresh Agri-Web Design</p>
+          <p class="work-cat">농산물 브랜딩을 기반으로 한 반응형 웹디자인</p>
         </div>
         <div class="card-overlay" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
           <span class="view-hint">
@@ -908,8 +1026,8 @@
           <span class="img-placeholder-label dark">이미지를 추가하세요</span>
         </div>
         <div class="card-work-meta light">
-          <p class="work-title dark">Project Title 05</p>
-          <p class="work-cat dark">Art Direction</p>
+          <p class="work-title dark">Clay Packaging</p>
+          <p class="work-cat dark">신입시절 기획부터 진행한 최초의 문구 시리즈물</p>
         </div>
         <div class="card-overlay" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
           <span class="view-hint" style="color:var(--ink);background:rgba(51,56,61,.08);">
@@ -932,8 +1050,8 @@
           <span class="img-placeholder-label">이미지를 추가하세요</span>
         </div>
         <div class="card-work-meta">
-          <p class="work-title">Project Title 06</p>
-          <p class="work-cat">Branding · Commerce</p>
+          <p class="work-title">High-Tech Commerce UX</p>
+          <p class="work-cat">몬드리안을 재해석한 프리미엄 티비 상세페이지</p>
         </div>
         <div class="card-overlay" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
           <span class="view-hint">
@@ -951,7 +1069,80 @@
     <p class="footer-copy">© 2025 — Brand Commerce Designer</p>
   </footer>
 
-  <!-- ── MODAL ──────────────────────────────────────────────── -->
+  <!-- ── CARD 5 MODAL — 우리농산물마켓 ────────────────────── -->
+  <div id="modal5Overlay" onclick="handleModal5OverlayClick(event)">
+    <div class="modal5" id="modal5" role="dialog" aria-modal="true">
+      <div class="modal5-close">
+        <button onclick="closeModal5()" aria-label="닫기">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal5-layout">
+        <!-- 좌측: 이미지 -->
+        <div class="modal5-img-col">
+          <div class="modal5-img-wrap" id="modal5ImgWrap">
+            <!-- 이미지 교체: <img src="images/agri-web.jpg" alt="우리농산물마켓"> -->
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="opacity:.25">
+              <rect x="4" y="7" width="40" height="34" rx="4" stroke="white" stroke-width="2"/>
+              <circle cx="17" cy="19" r="5" stroke="white" stroke-width="2"/>
+              <path d="M4 36l11-11 9 8 7-7 13 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="modal5-img-placeholder-label">이미지를 추가하세요</span>
+          </div>
+        </div>
+        <!-- 우측: 정보 -->
+        <div class="modal5-info-col">
+          <p class="modal5-project-title">우리농산물마켓</p>
+
+          <div class="modal5-meta-table">
+            <div class="modal5-meta-row">
+              <span class="modal5-meta-key">제작기간</span>
+              <span class="modal5-meta-val">2024.09.01 ~ 2024.09.22</span>
+            </div>
+            <div class="modal5-meta-row">
+              <span class="modal5-meta-key">기여도</span>
+              <span class="modal5-meta-val">100% — 웹 사이트 기획, 디자인, 구현</span>
+            </div>
+            <div class="modal5-meta-row">
+              <span class="modal5-meta-key">사용툴</span>
+              <span class="modal5-meta-val">Photoshop, Illustrator, Figma, HTML, CSS, JS</span>
+            </div>
+          </div>
+
+          <p class="modal5-desc">
+            우리농산물마켓은 생산자가 소비자에게 바로 판매하여 신선한 농작물을 좋은 가격에 살 수 있는 농산물마켓입니다.<br><br>
+            반응형으로 작업하여 여러 디바이스에서 쇼핑할 수 있도록 만들었습니다.
+          </p>
+
+          <div class="modal5-btns">
+            <a class="modal5-btn modal5-btn-outline"
+               href="#" target="_blank" rel="noopener noreferrer"
+               onclick="return handleModal5Link(event, 'plan')">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <rect x="2" y="1" width="10" height="12" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M4 5h6M4 7.5h6M4 10h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+              기획서 보기
+            </a>
+            <a class="modal5-btn modal5-btn-fill"
+               href="#" target="_blank" rel="noopener noreferrer"
+               onclick="return handleModal5Link(event, 'site')">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M7 1.5C5.5 3 4.5 5 4.5 7s1 4 2.5 5.5M7 1.5C8.5 3 9.5 5 9.5 7s-1 4-2.5 5.5" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M1.5 7h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+              웹 사이트 보기
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MODAL (기존 — cards 1~4, 6~7용) ──────────────────── -->
   <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
     <div class="modal" id="modal" role="dialog" aria-modal="true">
       <div class="modal-close">
@@ -980,41 +1171,41 @@
   </div>
 
   <!-- ── SCRIPT ─────────────────────────────────────────────── -->
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const modalData = [
       {
         cat: 'About',
-        title: '브랜드와 비즈니스를 함께 씁니다',
+        title: '시각적 스토리텔링으로 브랜드의 가치를 완성합니다.',
         img: null
       },
       {
-        cat: 'Main Work',
-        title: 'Project Title 01',
+        cat: 'Hanger Brand Renewal',
+        title: 'Project CINC',
         img: null   // ← 실제 이미지 경로로 교체: 'images/work-01.jpg'
       },
       {
-        cat: 'Brand Identity',
-        title: 'Project Title 02',
+        cat: 'Toy Packaging',
+        title: 'Project CHOIROCK',
         img: null
       },
       {
-        cat: 'Commerce UX',
-        title: 'Project Title 03',
+        cat: 'Package Design Archive',
+        title: 'Project Personal Works',
         img: null
       },
       {
-        cat: 'Campaign',
-        title: 'Project Title 04',
+        cat: 'Fresh Agri-Web Design',
+        title: 'Project Web Design',
         img: null
       },
       {
-        cat: 'Art Direction',
-        title: 'Project Title 05',
+        cat: 'Clay Packaging',
+        title: 'Project DONERLAND',
         img: null
       },
       {
-        cat: 'Branding · Commerce',
-        title: 'Project Title 06',
+        cat: 'High-Tech Commerce UX',
+        title: 'Project DLT',
         img: null
       }
     ];
@@ -1054,8 +1245,47 @@
       if (e.target === overlay) closeModal();
     }
 
+    // ── Card 5 전용 모달 ──
+    const overlay5 = document.getElementById('modal5Overlay');
+    const modal5El = document.getElementById('modal5');
+
+    // 링크 URL 설정 (여기에 실제 링크를 넣으세요)
+    const card5Links = {
+      plan: '#',   // ← 기획서 링크로 교체: 'https://...'
+      site: '#'    // ← 웹사이트 링크로 교체: 'https://...'
+    };
+
+    function openModal5() {
+      modal5El.scrollTop = 0;
+      overlay5.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal5() {
+      overlay5.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function handleModal5OverlayClick(e) {
+      if (e.target === overlay5) closeModal5();
+    }
+
+    function handleModal5Link(e, type) {
+      const url = card5Links[type];
+      if (!url || url === '#') {
+        e.preventDefault();
+        alert(type === 'plan' ? '기획서 링크를 card5Links.plan에 입력하세요.' : '웹사이트 링크를 card5Links.site에 입력하세요.');
+        return false;
+      }
+      // href가 실제 URL이면 target="_blank"로 열림 (return true)
+      return true;
+    }
+
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeModal();
+      if (e.key === 'Escape') {
+        closeModal();
+        closeModal5();
+      }
     });
 
     // ── Scroll-reveal for bento cards ──
@@ -1073,13 +1303,7 @@
       });
     }, { threshold: 0.08 });
 
-    cards.forEach(c => {
-      c.style.opacity = '0';
-      c.style.transform = 'translateY(20px)';
-      c.style.transition = 'opacity .6s var(--ease-out), transform .6s var(--ease-out)';
-      io.observe(c);
-    });
-
+    cards.forEach(c => io.observe(c));
   </script>
 </body>
 </html>
