@@ -529,7 +529,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      padding: 5vh 5vw;
       opacity: 0;
       visibility: hidden;
       transition: opacity .4s var(--ease-out), visibility .4s;
@@ -543,9 +543,10 @@
     .modal {
       background: var(--bg);
       border-radius: var(--r-lg);
-      width: 85%;
-      max-width: none;
-      max-height: 90vh;
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      max-height: 100%;
       overflow-y: auto;
       position: relative;
       transform: translateY(32px) scale(.97);
@@ -566,7 +567,7 @@
       z-index: 10;
       display: flex;
       justify-content: flex-end;
-      padding: 18px 18px 0;
+      padding: 16px 16px 0;
       pointer-events: none;
     }
 
@@ -592,13 +593,13 @@
     }
 
     .modal-body {
-      padding: 0 32px 40px;
+      padding: 0 32px 36px;
     }
 
     .modal-header {
-      padding: 4px 0 20px;
+      padding: 4px 0 16px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 28px;
+      margin-bottom: 20px;
     }
 
     .modal-cat {
@@ -647,6 +648,291 @@
     }
 
     /* ══════════════════════════════════════════════════════════
+       CARD 1 MODAL — 이력서/프로필 전용
+    ══════════════════════════════════════════════════════════ */
+    #modal1Overlay {
+      position: fixed; inset: 0;
+      background: rgba(51,56,61,.72);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 5vh 5vw;
+      opacity: 0; visibility: hidden;
+      transition: opacity .4s var(--ease-out), visibility .4s;
+    }
+    #modal1Overlay.open { opacity: 1; visibility: visible; }
+
+    .modal1 {
+      background: var(--bg);
+      border-radius: var(--r-lg);
+      width: 100%; max-width: 100%;
+      height: 100%; max-height: 100%;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(32px) scale(.97);
+      transition: transform .45s var(--ease-out);
+    }
+    #modal1Overlay.open .modal1 { transform: translateY(0) scale(1); }
+    .modal1::-webkit-scrollbar { width: 4px; }
+    .modal1::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+    .modal1-close {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; justify-content: flex-end;
+      padding: 16px 16px 0; pointer-events: none;
+    }
+    .modal1-close button {
+      pointer-events: all;
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(244,250,255,.9); backdrop-filter: blur(8px);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      color: var(--ink); transition: background .2s, transform .2s;
+    }
+    .modal1-close button:hover { background: var(--ink); color: var(--bg); transform: rotate(90deg); }
+
+    /* ── 전체 레이아웃: 3컬럼 ── */
+    .modal1-layout {
+      display: grid;
+      grid-template-columns: 210px 1fr 260px;
+      gap: 0;
+      padding: 0 28px 32px;
+      align-items: start;
+      min-height: calc(100% - 56px);
+    }
+
+    /* ── 공통 섹션 헤더 ── */
+    .m1-section-head {
+      font-size: 10px; font-weight: 800;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--ink-light);
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px;
+    }
+    .m1-section-head::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    /* ══ 좌측 컬럼 ══ */
+    .modal1-col-left {
+      padding-right: 28px;
+      border-right: 1px solid var(--border);
+    }
+
+    /* 사진 영역 */
+    .m1-photo {
+      width: 100%; aspect-ratio: 3/4;
+      border-radius: var(--r-md);
+      background: var(--card-bg);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; margin-bottom: 24px;
+    }
+    .m1-photo img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: var(--r-md); }
+    .m1-photo-placeholder {
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+    }
+    .m1-photo-placeholder svg { opacity: .3; }
+    .m1-photo-placeholder span {
+      font-size: 10px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(51,56,61,.3);
+    }
+
+    /* 이름 */
+    .m1-name {
+      font-size: 20px; font-weight: 800; letter-spacing: -.03em;
+      color: var(--ink); margin-bottom: 16px;
+    }
+
+    /* 정보 행 */
+    .m1-info-list { display: flex; flex-direction: column; gap: 0; }
+    .m1-info-row {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 12px; font-weight: 500; color: var(--ink);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .m1-info-row:last-child { border-bottom: none; }
+    .m1-info-icon {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: var(--card-bg);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .m1-info-icon svg { opacity: .6; }
+    .m1-info-text { line-height: 1.4; }
+
+    /* 학력 */
+    .m1-edu-item {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+    }
+    .m1-edu-item:last-child { border-bottom: none; }
+    .m1-edu-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0; margin-top: 5px;
+    }
+    .m1-edu-period {
+      font-size: 10.5px; font-weight: 700; color: var(--ink-light);
+      letter-spacing: .04em; display: block; margin-bottom: 2px;
+    }
+    .m1-edu-school {
+      font-size: 12.5px; font-weight: 700; color: var(--ink);
+      line-height: 1.4;
+    }
+
+    /* ── 섹션 구분 간격 ── */
+    .m1-section { margin-bottom: 24px; }
+
+    /* ══ 중앙 컬럼 (Career) ══ */
+    .modal1-col-center {
+      padding: 0 28px;
+      border-right: 1px solid var(--border);
+    }
+
+    /* 타임라인 스타일 경력 */
+    .m1-career-timeline { display: flex; flex-direction: column; }
+    .m1-career-item {
+      display: flex; gap: 16px;
+      padding-bottom: 24px;
+      position: relative;
+    }
+    .m1-career-item:last-child { padding-bottom: 0; }
+
+    /* 왼쪽 타임라인 선 + 점 */
+    .m1-career-line {
+      display: flex; flex-direction: column; align-items: center;
+      flex-shrink: 0; width: 16px;
+    }
+    .m1-career-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      outline: 2px solid var(--accent);
+      flex-shrink: 0; margin-top: 4px;
+    }
+    .m1-career-vline {
+      width: 1px; flex: 1; background: var(--border);
+      margin-top: 6px;
+    }
+    .m1-career-item:last-child .m1-career-vline { display: none; }
+
+    /* 오른쪽 내용 */
+    .m1-career-content { flex: 1; }
+    .m1-career-period {
+      font-size: 10.5px; font-weight: 700;
+      color: var(--ink-light); letter-spacing: .06em;
+      display: block; margin-bottom: 4px;
+    }
+    .m1-career-company {
+      font-size: 13.5px; font-weight: 800; letter-spacing: -.02em;
+      color: var(--ink); margin-bottom: 8px; line-height: 1.3;
+    }
+    .m1-career-role {
+      display: inline-block;
+      font-size: 10px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--ink);
+      background: var(--accent); border-radius: 99px;
+      padding: 2px 9px; margin-bottom: 8px;
+    }
+    .m1-career-tasks {
+      list-style: none; display: flex; flex-direction: column; gap: 4px;
+    }
+    .m1-career-tasks li {
+      font-size: 12px; font-weight: 500; color: var(--ink-light);
+      line-height: 1.55; padding-left: 12px; position: relative;
+    }
+    .m1-career-tasks li::before {
+      content: '–'; position: absolute; left: 0;
+      color: var(--accent); font-weight: 700;
+    }
+
+    /* ══ 우측 컬럼 ══ */
+    .modal1-col-right { padding-left: 28px; }
+
+    /* 스킬 이미지 그리드 */
+    .m1-skill-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .m1-skill-icon {
+      aspect-ratio: 1; border-radius: var(--r-sm);
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .m1-skill-icon img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    /* 이미지 없을 때 폴백 */
+    .m1-skill-icon-fallback {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 800;
+      letter-spacing: .04em; text-transform: uppercase;
+      color: var(--ink); background: var(--card-bg);
+      text-align: center; line-height: 1.2; padding: 4px;
+    }
+
+    /* 자격증 */
+    .m1-license-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 7px;
+    }
+    .m1-license-tag {
+      font-size: 11px; font-weight: 700; text-align: center;
+      padding: 10px 6px; border-radius: var(--r-sm);
+      background: var(--card-bg); color: var(--ink);
+      border: 1.5px solid var(--border);
+      letter-spacing: -.01em; transition: background .2s, border-color .2s;
+    }
+    .m1-license-tag:hover { background: var(--accent); border-color: var(--accent); }
+    .m1-license-tag.single { grid-column: 1 / 2; }
+
+    /* 키워드 */
+    .m1-keyword-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 7px;
+    }
+    .m1-keyword-tag {
+      font-size: 11px; font-weight: 700; text-align: center;
+      padding: 10px 4px; border-radius: var(--r-sm);
+      background: transparent; color: var(--ink);
+      border: 1.5px solid var(--accent);
+      transition: background .2s;
+    }
+    .m1-keyword-tag:hover { background: var(--accent); }
+
+    /* ══ 반응형 ══ */
+    @media (max-width: 900px) {
+      #modal1Overlay { padding: 10px; }
+      .modal1 { border-radius: var(--r-md); }
+      .modal1-layout {
+        grid-template-columns: 1fr;
+        padding: 0 14px 24px;
+      }
+      .modal1-col-left {
+        border-right: none; border-bottom: 1px solid var(--border);
+        padding-right: 0; padding-bottom: 20px; margin-bottom: 20px;
+        display: grid; grid-template-columns: 110px 1fr; gap: 16px;
+        align-items: start;
+      }
+      .m1-photo { margin-bottom: 0; }
+      .modal1-col-center {
+        border-right: none; border-bottom: 1px solid var(--border);
+        padding: 0 0 20px 0; margin-bottom: 20px;
+      }
+      .modal1-col-right { padding-left: 0; }
+    }
+
+    @media (max-width: 480px) {
+      .modal1-layout { padding: 0 10px 20px; }
+      .modal1-col-left { grid-template-columns: 90px 1fr; gap: 12px; }
+      .m1-skill-grid { gap: 6px; }
+      .m1-license-grid { gap: 6px; }
+      .m1-keyword-grid { gap: 6px; }
+    }
+
+    /* ══════════════════════════════════════════════════════════
        CARD 5 MODAL — 우리농산물마켓 전용
     ══════════════════════════════════════════════════════════ */
     #modal5Overlay {
@@ -659,7 +945,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      padding: 5vh 5vw;
       opacity: 0;
       visibility: hidden;
       transition: opacity .4s var(--ease-out), visibility .4s;
@@ -669,9 +955,10 @@
     .modal5 {
       background: var(--bg);
       border-radius: var(--r-lg);
-      width: 90%;
-      max-width: 1100px;
-      max-height: 90vh;
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      max-height: 100%;
       overflow-y: auto;
       position: relative;
       transform: translateY(32px) scale(.97);
@@ -684,7 +971,7 @@
     .modal5-close {
       position: sticky; top: 0; z-index: 10;
       display: flex; justify-content: flex-end;
-      padding: 18px 18px 0; pointer-events: none;
+      padding: 16px 16px 0; pointer-events: none;
     }
     .modal5-close button {
       pointer-events: all;
@@ -703,15 +990,16 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0;
-      padding: 0 32px 40px;
-      align-items: start;
+      padding: 0 32px 36px;
+      align-items: center;
+      min-height: calc(100% - 56px);
     }
     @media (max-width: 768px) {
-      .modal5-layout { grid-template-columns: 1fr; padding: 0 20px 32px; }
+      .modal5-layout { grid-template-columns: 1fr; padding: 0 14px 24px; align-items: start; }
     }
 
     .modal5-img-col { padding-right: 32px; padding-top: 4px; }
-    @media (max-width: 768px) { .modal5-img-col { padding-right: 0; padding-bottom: 24px; } }
+    @media (max-width: 768px) { .modal5-img-col { padding-right: 0; padding-bottom: 18px; } }
 
     .modal5-img-wrap {
       width: 100%; aspect-ratio: 4 / 3;
@@ -729,7 +1017,7 @@
       padding-left: 32px;
       display: flex; flex-direction: column; gap: 22px;
     }
-    @media (max-width: 768px) { .modal5-info-col { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 24px; } }
+    @media (max-width: 768px) { .modal5-info-col { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 18px; gap: 14px; } }
 
     .modal5-project-title {
       font-size: clamp(22px, 2.6vw, 32px);
@@ -842,9 +1130,12 @@
       .card-3, .card-4, .card-5 { min-height: 200px; }
       .card-6, .card-7 { min-height: 180px; }
 
-      .modal { width: 95%; border-radius: var(--r-md); max-height: 95vh; }
-      .modal-body { padding: 0 20px 32px; }
+      /* 모바일: 모달 overlay 여백 최소화 → 거의 풀스크린 */
+      .modal-overlay, #modal1Overlay, #modal5Overlay { padding: 10px; }
+      .modal, .modal1, .modal5 { border-radius: var(--r-md); }
+      .modal-body { padding: 0 14px 24px; }
       .modal-title { font-size: 20px; }
+      .modal5-project-title { font-size: 20px; }
 
       .site-footer {
         flex-direction: column;
@@ -900,7 +1191,7 @@
     <div class="bento-grid">
 
       <!-- Card 1: Bio -->
-      <article class="card card-1" data-index="0" onclick="openModal(0)">
+      <article class="card card-1" data-index="0" onclick="openModal1()">
         <div class="card-tag">About</div>
         <h2>시각적 스토리텔링으로<br>브랜드의 가치를 완성합니다.</h2>
         <p>11년 차의 전문성으로 오프라인 패키지와 온라인 상세페이지를 아우르는 통합 브랜딩을 지향합니다.</p>
@@ -1068,6 +1359,252 @@
   <footer class="site-footer">
     <p class="footer-copy">© 2025 — Brand Commerce Designer</p>
   </footer>
+
+  <!-- ── CARD 1 MODAL — 프로필/이력서 ─────────────────────── -->
+  <div id="modal1Overlay" onclick="handleModal1OverlayClick(event)">
+    <div class="modal1" id="modal1" role="dialog" aria-modal="true">
+      <div class="modal1-close">
+        <button onclick="closeModal1()" aria-label="닫기">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal1-layout">
+
+        <!-- ── 좌측: 사진 + 프로필 + 학력 ── -->
+        <div class="modal1-col-left">
+          <!-- 사진 -->
+          <div class="m1-photo">
+            <!-- 사진 교체: <img src="images/profile.jpg" alt="한다휘"> -->
+            <div class="m1-photo-placeholder">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="14" r="8" stroke="#33383D" stroke-width="1.6"/>
+                <path d="M4 36c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="#33383D" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+              <span>사진 추가</span>
+            </div>
+          </div>
+
+          <div>
+            <!-- 프로필 -->
+            <div class="m1-section">
+              <div class="m1-section-head">Profile</div>
+              <p class="m1-name">한다휘</p>
+              <div class="m1-info-list">
+                <div class="m1-info-row">
+                  <div class="m1-info-icon">
+                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="5.5" r="2.2" stroke="#33383D" stroke-width="1.3"/><path d="M6.5 1C4.015 1 2 3.015 2 5.5c0 3.375 4.5 6.5 4.5 6.5S11 8.875 11 5.5C11 3.015 8.985 1 6.5 1z" stroke="#33383D" stroke-width="1.3"/></svg>
+                  </div>
+                  <span class="m1-info-text">경기도 광주시 양벌동</span>
+                </div>
+                <div class="m1-info-row">
+                  <div class="m1-info-icon">
+                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="1.5" y="3" width="10" height="7.5" rx="1.2" stroke="#33383D" stroke-width="1.3"/><path d="M1.5 5l5 3 5-3" stroke="#33383D" stroke-width="1.3" stroke-linecap="round"/></svg>
+                  </div>
+                  <span class="m1-info-text">gladand@naver.com</span>
+                </div>
+                <div class="m1-info-row">
+                  <div class="m1-info-icon">
+                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2" y="2" width="9" height="9" rx="1.5" stroke="#33383D" stroke-width="1.3"/><path d="M2 5h9" stroke="#33383D" stroke-width="1.3"/><path d="M5 2v3M8 2v3" stroke="#33383D" stroke-width="1.3" stroke-linecap="round"/></svg>
+                  </div>
+                  <span class="m1-info-text">1988.07.13 (만 36세)</span>
+                </div>
+                <div class="m1-info-row">
+                  <div class="m1-info-icon">
+                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 2.5h2l1 2.5-1.5 1a7 7 0 003 3l1-1.5 2.5 1v2a1 1 0 01-1 1A9 9 0 011.5 3.5a1 1 0 011-1z" stroke="#33383D" stroke-width="1.3" stroke-linejoin="round"/></svg>
+                  </div>
+                  <span class="m1-info-text">010.8689.5309</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 학력 -->
+            <div class="m1-section">
+              <div class="m1-section-head">Education</div>
+              <div class="m1-edu-item">
+                <div class="m1-edu-dot"></div>
+                <div>
+                  <span class="m1-edu-period">2008.03 ~ 2012.02</span>
+                  <p class="m1-edu-school">상명대학교 출판만화과</p>
+                </div>
+              </div>
+              <div class="m1-edu-item">
+                <div class="m1-edu-dot"></div>
+                <div>
+                  <span class="m1-edu-period">2004.03 ~ 2007.02</span>
+                  <p class="m1-edu-school">서울미술고등학교 만화과</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── 중앙: 경력 (타임라인) ── -->
+        <div class="modal1-col-center">
+          <div class="m1-section-head">Career</div>
+          <div class="m1-career-timeline">
+
+            <div class="m1-career-item">
+              <div class="m1-career-line">
+                <div class="m1-career-dot"></div>
+                <div class="m1-career-vline"></div>
+              </div>
+              <div class="m1-career-content">
+                <span class="m1-career-period">2022.11 ~ 2024.08</span>
+                <p class="m1-career-company">프리랜서</p>
+                <ul class="m1-career-tasks">
+                  <li>패키지 디자인</li>
+                  <li>게임 캐릭터 원화</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="m1-career-item">
+              <div class="m1-career-line">
+                <div class="m1-career-dot"></div>
+                <div class="m1-career-vline"></div>
+              </div>
+              <div class="m1-career-content">
+                <span class="m1-career-period">2018.08 ~ 2022.09</span>
+                <p class="m1-career-company">(주)초이락컨텐츠컴퍼니</p>
+                <span class="m1-career-role">디자인팀 대리</span>
+                <ul class="m1-career-tasks">
+                  <li>자사 IP 완구 패키지 디자인 및 완구 변신 설명서 디자인</li>
+                  <li>자사 IP 로고 디자인 (BI 작업)</li>
+                  <li>완구 포장공간비율에 따른 패키지 사이즈 정립, 지기구조</li>
+                  <li>작업 스케줄 관리</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="m1-career-item">
+              <div class="m1-career-line">
+                <div class="m1-career-dot"></div>
+                <div class="m1-career-vline"></div>
+              </div>
+              <div class="m1-career-content">
+                <span class="m1-career-period">2017.06 ~ 2018.06</span>
+                <p class="m1-career-company">(주)디엘티</p>
+                <span class="m1-career-role">디자인팀 팀원</span>
+                <ul class="m1-career-tasks">
+                  <li>제품 브랜딩 디자인</li>
+                  <li>웹 상세페이지 디자인</li>
+                  <li>제품 패키지 및 설명서 디자인</li>
+                  <li>웹 디자인 및 제품 배너와 포스터 디자인</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="m1-career-item">
+              <div class="m1-career-line">
+                <div class="m1-career-dot"></div>
+                <div class="m1-career-vline"></div>
+              </div>
+              <div class="m1-career-content">
+                <span class="m1-career-period">2014.09 ~ 2016.12</span>
+                <p class="m1-career-company">(주)도너랜드</p>
+                <span class="m1-career-role">디자인팀 주임</span>
+                <ul class="m1-career-tasks">
+                  <li>클레이 제품 기획 및 개발</li>
+                  <li>제품 브랜딩 디자인</li>
+                  <li>제품 패키지 및 설명서 디자인</li>
+                  <li>인쇄물 및 부자재 발주</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── 우측: 스킬 + 자격증 + 키워드 ── -->
+        <div class="modal1-col-right">
+
+          <!-- 스킬 -->
+          <div class="m1-section">
+            <div class="m1-section-head">Skill</div>
+            <div class="m1-skill-grid">
+              <!-- Photoshop — CDN 아이콘 이미지 -->
+              <div class="m1-skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-original.svg"
+                     alt="Photoshop"
+                     onerror="this.parentNode.innerHTML='<div class=\'m1-skill-icon-fallback\' style=\'background:#001E36;color:#31A8FF\'>Ps</div>'">
+              </div>
+              <!-- Illustrator -->
+              <div class="m1-skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/illustrator/illustrator-plain.svg"
+                     alt="Illustrator"
+                     onerror="this.parentNode.innerHTML='<div class=\'m1-skill-icon-fallback\' style=\'background:#1C1C1C;color:#FF9A00\'>Ai</div>'">
+              </div>
+              <!-- InDesign -->
+              <div class="m1-skill-icon">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Adobe_InDesign_CC_icon.svg"
+                     alt="InDesign"
+                     onerror="this.parentNode.innerHTML='<div class=\'m1-skill-icon-fallback\' style=\'background:#1C0B1B;color:#FF3366\'>Id</div>'">
+              </div>
+              <!-- Premiere -->
+              <div class="m1-skill-icon">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg"
+                     alt="Premiere Pro"
+                     onerror="this.parentNode.innerHTML='<div class=\'m1-skill-icon-fallback\' style=\'background:#0D0929;color:#9999FF\'>Pr</div>'">
+              </div>
+              <!-- Figma -->
+              <div class="m1-skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg"
+                     alt="Figma"
+                     onerror="this.parentNode.innerHTML='<div class=\'m1-skill-icon-fallback\' style=\'background:#1E1E1E\'>Figma</div>'">
+              </div>
+              <!-- HTML5 -->
+              <div class="m1-skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
+                     alt="HTML5"
+                     onerror="this.parentNode.innerHTML='<div class=\'m1-skill-icon-fallback\' style=\'background:#E44D26;color:white\'>HTML5</div>'">
+              </div>
+              <!-- CSS3 -->
+              <div class="m1-skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"
+                     alt="CSS3"
+                     onerror="this.parentNode.innerHTML='<div class=\'m1-skill-icon-fallback\' style=\'background:#264DE4;color:white\'>CSS3</div>'">
+              </div>
+              <!-- JavaScript -->
+              <div class="m1-skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
+                     alt="JavaScript"
+                     onerror="this.parentNode.innerHTML='<div class=\'m1-skill-icon-fallback\' style=\'background:#F7DF1E;color:#33383D\'>JS</div>'">
+              </div>
+            </div>
+          </div>
+
+          <!-- 자격증 -->
+          <div class="m1-section">
+            <div class="m1-section-head">License</div>
+            <div class="m1-license-grid">
+              <div class="m1-license-tag">웹디자인기능사</div>
+              <div class="m1-license-tag">GTQ 1급</div>
+              <div class="m1-license-tag">GTQi1급</div>
+              <div class="m1-license-tag">GTQid 1급</div>
+              <div class="m1-license-tag single">운전면허증 2종</div>
+            </div>
+          </div>
+
+          <!-- 키워드 -->
+          <div class="m1-section">
+            <div class="m1-section-head">Keyword</div>
+            <div class="m1-keyword-grid">
+              <div class="m1-keyword-tag">적응력</div>
+              <div class="m1-keyword-tag">차분한</div>
+              <div class="m1-keyword-tag">꼼꼼한</div>
+              <div class="m1-keyword-tag">성실한</div>
+              <div class="m1-keyword-tag">솔직한</div>
+              <div class="m1-keyword-tag">마감 엄수</div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /modal1-layout -->
+    </div>
+  </div>
 
   <!-- ── CARD 5 MODAL — 우리농산물마켓 ────────────────────── -->
   <div id="modal5Overlay" onclick="handleModal5OverlayClick(event)">
@@ -1245,6 +1782,23 @@
       if (e.target === overlay) closeModal();
     }
 
+    // ── Card 1 전용 모달 (프로필/이력서) ──
+    const overlay1 = document.getElementById('modal1Overlay');
+    const modal1El = document.getElementById('modal1');
+
+    function openModal1() {
+      modal1El.scrollTop = 0;
+      overlay1.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal1() {
+      overlay1.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function handleModal1OverlayClick(e) {
+      if (e.target === overlay1) closeModal1();
+    }
+
     // ── Card 5 전용 모달 ──
     const overlay5 = document.getElementById('modal5Overlay');
     const modal5El = document.getElementById('modal5');
@@ -1284,6 +1838,7 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
         closeModal();
+        closeModal1();
         closeModal5();
       }
     });
