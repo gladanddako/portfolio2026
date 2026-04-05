@@ -1179,7 +1179,7 @@
         Scroll
       </button>
       <p class="hero-contact">
-        <a href="/cdn-cgi/l/email-protection#7c0513090e3c19111d1510521f1311"><span class="__cf_email__" data-cfemail="7b1c171a1f1a151f3b151a0d1e0955181416">[email&#160;protected]</span></a>
+        <a href="mailto:gladand@naver.com">gladand@naver.com</a>
       </p>
     </div>
   </section>
@@ -1409,7 +1409,7 @@
                   <div class="m1-info-icon">
                     <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2" y="2" width="9" height="9" rx="1.5" stroke="#33383D" stroke-width="1.3"/><path d="M2 5h9" stroke="#33383D" stroke-width="1.3"/><path d="M5 2v3M8 2v3" stroke="#33383D" stroke-width="1.3" stroke-linecap="round"/></svg>
                   </div>
-                  <span class="m1-info-text">1988.07.13 (만 36세)</span>
+                  <span class="m1-info-text">1988.07.13 (만 37세)</span>
                 </div>
                 <div class="m1-info-row">
                   <div class="m1-info-icon">
@@ -1444,7 +1444,25 @@
         <!-- ── 중앙: 경력 (타임라인) ── -->
         <div class="modal1-col-center">
           <div class="m1-section-head">Career</div>
+          
           <div class="m1-career-timeline">
+
+            <div class="m1-career-item">
+              <div class="m1-career-line">
+                <div class="m1-career-dot"></div>
+                <div class="m1-career-vline"></div>
+              </div>
+              <div class="m1-career-content">
+                <span class="m1-career-period">2024.12 ~ 2026.02</span>
+                <p class="m1-career-company">씨인크</p>
+                <ul class="m1-career-tasks">
+                  <li>커머스 비주얼 시스템 디자인</li>
+                  <li>스마트스토어 상세페이지 기획 및 디자인</li>
+                  <li>제품 목업 시스템 개발</li>
+                  <li>마케팅 비주얼 에셋 관리</li>
+                </ul>
+              </div>
+            </div>
 
             <div class="m1-career-item">
               <div class="m1-career-line">
@@ -1805,8 +1823,8 @@
 
     // 링크 URL 설정 (여기에 실제 링크를 넣으세요)
     const card5Links = {
-      plan: '#',   // ← 기획서 링크로 교체: 'https://...'
-      site: '#'    // ← 웹사이트 링크로 교체: 'https://...'
+      plan: 'https://www.figma.com/proto/gRmowkP8ANwDLquwm8ikCF/%EC%8A%A4%EB%A7%88%ED%8A%B8%EB%AC%B8%ED%99%94%EC%95%B1_UI%EB%94%94%EC%9E%90%EC%9D%B8?node-id=1-2&node-type=canvas&t=uqWBG3cfafHs4ZjV-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',   // ← 기획서 링크로 교체: 'https://...'
+      site: 'https://gladanddako.github.io/portfolio/woori/'    // ← 웹사이트 링크로 교체: 'https://...'
     };
 
     function openModal5() {
@@ -1825,15 +1843,16 @@
     }
 
     function handleModal5Link(e, type) {
-      const url = card5Links[type];
-      if (!url || url === '#') {
-        e.preventDefault();
-        alert(type === 'plan' ? '기획서 링크를 card5Links.plan에 입력하세요.' : '웹사이트 링크를 card5Links.site에 입력하세요.');
-        return false;
-      }
-      // href가 실제 URL이면 target="_blank"로 열림 (return true)
-      return true;
-    }
+  const url = card5Links[type];
+  if (!url || url === '#') {
+    e.preventDefault();
+    alert(type === 'plan' ? '기획서 링크를 card5Links.plan에 입력하세요.' : '웹사이트 링크를 card5Links.site에 입력하세요.');
+    return false;
+  }
+  e.preventDefault();
+  window.open(url, '_blank');
+  return false;
+}
 
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
