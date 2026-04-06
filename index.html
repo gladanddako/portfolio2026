@@ -61,18 +61,12 @@
       padding: 36px 48px 44px;
       position: relative;
       overflow: hidden;
+      background: url(./images/main_pc.jpg) no-repeat center/cover;
     }
 
     /* decorative ring */
     .hero::after {
-      content: '';
-      position: absolute;
-      width: 560px; height: 560px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      right: -140px; top: 50%;
-      transform: translateY(-50%);
-      pointer-events: none;
+      display: none;
     }
 
     .hero-nav {
@@ -111,6 +105,7 @@
       position: relative;
       z-index: 1;
       max-width: 900px;
+      margin-top: auto;
     }
 
     .hero-eyebrow {
@@ -133,9 +128,9 @@
     }
 
     .hero-title {
-      font-size: clamp(28px, 5vw, 60px);
+      font-size: clamp(42px, 5.5vw, 60px);
       font-weight: 800;
-      line-height: 1.35;
+      line-height: 1.25;
       letter-spacing: -.03em;
       word-break: keep-all;
     }
@@ -147,10 +142,16 @@
     }
 
     .hero-sub {
-    font-size: clamp(26px, 3.5vw, 44px); /* ← 작게 */
-    color: #B8D0E8; /* ← 회색 */
+    font-size: clamp(28px, 3.8vw, 42px); /* ← 작게 */
+    color: #7A90A4; /* ← 회색 */
     font-weight: 700;
     line-height: 1.2;
+    }
+
+    .hero-sub-desc {
+      margin-top: 15px;
+      font-size: clamp(16px, 1.5vw, 20px); /* ← 반응형 크기 */
+      color: var(--ink-light);
     }
 
     /* underline accent on key phrase */
@@ -166,7 +167,7 @@
 
     .hero-footer {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: flex-end;
       position: relative;
       z-index: 1;
@@ -222,6 +223,16 @@
       opacity: 0;
       transform: translateY(24px);
       animation: fadeUp .9s var(--ease-out) forwards;
+    }
+    @media (max-width: 768px) {
+    .hero {
+        background-image: url(./images/main_m.jpg);
+      }
+      .hero-body {
+        text-align: center;
+        width: 100%;
+        margin: auto 0; /* ← hero-body만 세로 중앙 */
+      }
     }
     .fade-up:nth-child(1) { animation-delay: .1s; }
     .fade-up:nth-child(2) { animation-delay: .25s; }
@@ -1174,7 +1185,9 @@
     @media (max-width: 680px) {
       .hero { padding: 24px 24px 32px; }
       .hero::after { display: none; }
-
+      .hero-footer {
+        justify-content: flex-start;
+      }
       .nav-links { display: none; }
 
       .bento-section { padding: 0 16px 56px; }
@@ -1225,14 +1238,11 @@
     </nav>
 
     <div class="hero-body">
-      <p class="hero-eyebrow fade-up">
-        <span class="dot"></span>
-        Brand Commerce Designer · 11 Years
-      </p>
       <h1 class="hero-title fade-up">
       <span class="hero-sub">일관된 시스템으로 가치를 더하는</span><br>
       브랜드 커머스 디자이너
     </h1>
+    <p class="hero-sub-desc fade-up">안녕하세요. 한다휘입니다!</p>
     </div>
 
     <div class="hero-footer">
@@ -1244,9 +1254,6 @@
         </span>
         Scroll
       </button>
-      <p class="hero-contact">
-        <a href="mailto:gladand@naver.com">gladand@naver.com</a>
-      </p>
     </div>
   </section>
 
