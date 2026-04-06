@@ -518,12 +518,12 @@
       grid-column: 3 / 5;
       grid-row: 3 / 4;
       min-height: 200px;
-      background: url(./images/web_mu_05.png) no-repeat center/cover;
+      background: url(./images/web_mu_05.jpg) no-repeat center/cover;
       position: relative;
     }
 
     .card-7:hover {
-      background: url(./images/web_mu_05.png) no-repeat center/cover;
+      background: url(./images/web_mu_05.jpg) no-repeat center/cover;
     }
 
     /* Work cards shared style */
@@ -1199,6 +1199,37 @@
         gap: 10px;
       }
 
+      .card-3 img {
+        width: 53% !important;
+      }
+
+      .card-4 img {
+       top: 43% !important;
+       width: 67% !important;
+      }
+
+      .card-6 img {
+        left: 50% !important;
+        top: 45% !important;
+        width: 77% !important;
+      }
+
+      .card-7 {
+        background-position: center 65%; /* ← % 낮추면 더 위로 */
+        background-size: 140%; /* ← 숫자 올리면 더 크게 */
+      }
+      .card-7:hover {
+        background-position: center 65% !important;
+        background-size: 140% !important;
+      }
+      
+      .card-2 {
+        background-position: center 25%; /* ← % 낮추면 위로 */
+      }
+      .card-2:hover {
+        background-position: center 25% !important;
+      }
+
       /* reset all grid positions */
       .card-1, .card-2, .card-3, .card-4,
       .card-5, .card-6, .card-7 {
@@ -1206,9 +1237,7 @@
         grid-row: auto !important;
       }
 
-      .card-2 { min-height: 340px; }
-      .card-3, .card-4, .card-5 { min-height: 200px; }
-      .card-6, .card-7 { min-height: 180px; }
+      .card-2, .card-3, .card-4,.card-5, .card-6, .card-7 { min-height: 300px; }
 
       /* 모바일: 모달 overlay 여백 최소화 → 거의 풀스크린 */
       .modal-overlay, #modal1Overlay, #modal5Overlay { padding: 10px; }
