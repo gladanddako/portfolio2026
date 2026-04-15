@@ -26,7 +26,7 @@
     :root {
       --bg:        #F4FAFF;
       --ink:       #33383D;
-      --ink-light: #7A90A4;
+      --ink-light: #5A7080;
       --accent:    #B8D0E8;
       --card-bg:   #E4EFF8;
       --card-hover:#D6E6F5;
@@ -590,7 +590,7 @@
       font-weight: 500;
       letter-spacing: .08em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.5);
+      color: rgba(255,255,255,.6);
     }
 
     .work-cat.dark { color: var(--ink-light); }
@@ -911,7 +911,7 @@
     .m1-career-content { flex: 1; }
     .m1-career-period {
       font-size: 10.5px; font-weight: 700;
-      color: var(--ink-light); letter-spacing: .06em;
+      color: var(--ink); letter-spacing: .06em;
       display: block; margin-bottom: 4px;
     }
     .m1-career-company {
@@ -922,14 +922,15 @@
       display: inline-block;
       font-size: 10px; font-weight: 700; letter-spacing: .08em;
       text-transform: uppercase; color: var(--ink);
-      background: var(--accent); border-radius: 99px;
+      background: rgba(184, 208, 232, 0.35); /* ← var(--accent)에서 변경 */
+      border-radius: 99px;
       padding: 2px 9px; margin-bottom: 8px;
     }
     .m1-career-tasks {
       list-style: none; display: flex; flex-direction: column; gap: 4px;
     }
     .m1-career-tasks li {
-      font-size: 12px; font-weight: 500; color: var(--ink-light);
+      font-size: 12px; font-weight: 500; color: var(--ink);
       line-height: 1.55; padding-left: 12px; position: relative;
     }
     .m1-career-tasks li::before {
