@@ -27,7 +27,7 @@
     :root {
       --bg:        #F4FAFF;
       --ink:       #33383D;
-      --ink-light: #5A7080;
+      --ink-light: #355B75;
       --accent:    #B8D0E8;
       --card-bg:   #E4EFF8;
       --card-hover:#D6E6F5;
@@ -621,7 +621,7 @@
     }
 
     .modal {
-      background: var(--bg);
+      background: #ffffff;
       border-radius: var(--r-lg);
       width: 100%;
       max-width: 100%;
@@ -701,13 +701,14 @@
       width: 100%;
       border-radius: var(--r-md);
       display: block;
+      box-shadow: 1px 2px 5px rgba(0,0,0,0.1);
     }
 
     /* 이미지 세로 나열 */
     .modal-imgs {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 20px;
       width: 100%;
     }
     .modal-imgs .modal-img {
@@ -777,11 +778,45 @@
       pointer-events: all;
       width: 40px; height: 40px; border-radius: 50%;
       border: 1px solid var(--border);
+      background: rgba(244,250,255,.85); backdrop-filter: blur(8px);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      color: var(--ink); transition: background .2s, transform .2s;
+    }
+    .modal1-close button:hover { background: var(--ink); color: var(--bg); transform: rotate(90deg); }
+
+    .modal1-body { padding: 0 32px 36px; }
+    .modal1-header {
+      padding: 4px 0 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+    .modal1-img-pc, .modal1-img-mo { width: 100%; display: block; border-radius: var(--r-md); box-shadow: 1px 3px 5px rgba(0,0,0,0.1);}
+    .modal1-img-mo { display: none; }
+
+    @media (max-width: 900px) {
+      #modal1Overlay { padding: 10px; }
+      .modal1 { border-radius: var(--r-md); }
+      .modal1-body { padding: 0 14px 24px; }
+      .modal1-img-pc { display: none; }
+      .modal1-img-mo { display: block; }
+    }
+
+    .modal1-close {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; justify-content: flex-end;
+      padding: 16px 16px 0; pointer-events: none;
+    }
+    .modal1-close button {
+      pointer-events: all;
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--border);
       background: rgba(244,250,255,.9); backdrop-filter: blur(8px);
       cursor: pointer; display: flex; align-items: center; justify-content: center;
       color: var(--ink); transition: background .2s, transform .2s;
     }
     .modal1-close button:hover { background: var(--ink); color: var(--bg); transform: rotate(90deg); }
+
+
 
     /* ── 전체 레이아웃: 3컬럼 ── */
     .modal1-layout {
@@ -1412,250 +1447,14 @@
           </svg>
         </button>
       </div>
-
-      <div class="modal1-layout">
-
-        <!-- ── 좌측: 사진 + 프로필 + 학력 ── -->
-        <div class="modal1-col-left">
-          <!-- 사진 -->
-          <div class="m1-photo">
-            <img src="images/photo.JPG" alt="한다휘">
-          </div>
-
-          <div>
-            <!-- 프로필 -->
-            <div class="m1-section">
-              <div class="m1-section-head">Profile</div>
-              <p class="m1-name">한다휘</p>
-              <div class="m1-info-list">
-                <div class="m1-info-row">
-                  <div class="m1-info-icon">
-                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="5.5" r="2.2" stroke="#33383D" stroke-width="1.3"/><path d="M6.5 1C4.015 1 2 3.015 2 5.5c0 3.375 4.5 6.5 4.5 6.5S11 8.875 11 5.5C11 3.015 8.985 1 6.5 1z" stroke="#33383D" stroke-width="1.3"/></svg>
-                  </div>
-                  <span class="m1-info-text">경기도 광주시 양벌동</span>
-                </div>
-                <div class="m1-info-row">
-                  <div class="m1-info-icon">
-                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="1.5" y="3" width="10" height="7.5" rx="1.2" stroke="#33383D" stroke-width="1.3"/><path d="M1.5 5l5 3 5-3" stroke="#33383D" stroke-width="1.3" stroke-linecap="round"/></svg>
-                  </div>
-                  <span class="m1-info-text"><a href="mailto:gladand@naver.com">gladand@naver.com</a></span>
-                </div>
-                <div class="m1-info-row">
-                  <div class="m1-info-icon">
-                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2" y="2" width="9" height="9" rx="1.5" stroke="#33383D" stroke-width="1.3"/><path d="M2 5h9" stroke="#33383D" stroke-width="1.3"/><path d="M5 2v3M8 2v3" stroke="#33383D" stroke-width="1.3" stroke-linecap="round"/></svg>
-                  </div>
-                  <span class="m1-info-text">1988.07.13 (만 37세)</span>
-                </div>
-                <div class="m1-info-row">
-                  <div class="m1-info-icon">
-                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 2.5h2l1 2.5-1.5 1a7 7 0 003 3l1-1.5 2.5 1v2a1 1 0 01-1 1A9 9 0 011.5 3.5a1 1 0 011-1z" stroke="#33383D" stroke-width="1.3" stroke-linejoin="round"/></svg>
-                  </div>
-                  <span class="m1-info-text">010.8689.5309</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- 학력 -->
-            <div class="m1-section">
-              <div class="m1-section-head">Education</div>
-              <div class="m1-edu-item">
-                <div class="m1-edu-dot"></div>
-                <div>
-                  <span class="m1-edu-period">2008.03 ~ 2012.02</span>
-                  <p class="m1-edu-school">상명대학교 출판만화과</p>
-                </div>
-              </div>
-              <div class="m1-edu-item">
-                <div class="m1-edu-dot"></div>
-                <div>
-                  <span class="m1-edu-period">2004.03 ~ 2007.02</span>
-                  <p class="m1-edu-school">서울미술고등학교 만화과</p>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="modal1-body">
+        <div class="modal1-header">
+          <p class="modal-cat">About</p>
+          <h2 class="modal-title">Brand Commerce Designer</h2>
         </div>
-
-        <!-- ── 중앙: 경력 (타임라인) ── -->
-        <div class="modal1-col-center">
-          <div class="m1-section-head">Career</div>
-          
-          <div class="m1-career-timeline">
-
-            <div class="m1-career-item">
-              <div class="m1-career-line">
-                <div class="m1-career-dot"></div>
-                <div class="m1-career-vline"></div>
-              </div>
-              <div class="m1-career-content">
-                <span class="m1-career-period">2024.12 ~ 2026.02</span>
-                <p class="m1-career-company">씨인크</p>
-                <ul class="m1-career-tasks">
-                  <li>커머스 비주얼 시스템 디자인</li>
-                  <li>스마트스토어 상세페이지 기획 및 디자인</li>
-                  <li>제품 목업 시스템 개발</li>
-                  <li>마케팅 비주얼 에셋 관리</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="m1-career-item">
-              <div class="m1-career-line">
-                <div class="m1-career-dot"></div>
-                <div class="m1-career-vline"></div>
-              </div>
-              <div class="m1-career-content">
-                <span class="m1-career-period">2022.11 ~ 2024.08</span>
-                <p class="m1-career-company">프리랜서</p>
-                <ul class="m1-career-tasks">
-                  <li>패키지 디자인</li>
-                  <li>게임 캐릭터 원화</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="m1-career-item">
-              <div class="m1-career-line">
-                <div class="m1-career-dot"></div>
-                <div class="m1-career-vline"></div>
-              </div>
-              <div class="m1-career-content">
-                <span class="m1-career-period">2018.08 ~ 2022.09</span>
-                <p class="m1-career-company">(주)초이락컨텐츠컴퍼니</p>
-                <span class="m1-career-role">디자인팀 대리</span>
-                <ul class="m1-career-tasks">
-                  <li>자사 IP 완구 패키지 디자인 및 완구 변신 설명서 디자인</li>
-                  <li>자사 IP 로고 디자인 (BI 작업)</li>
-                  <li>완구 포장공간비율에 따른 패키지 사이즈 정립, 지기구조</li>
-                  <li>작업 스케줄 관리</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="m1-career-item">
-              <div class="m1-career-line">
-                <div class="m1-career-dot"></div>
-                <div class="m1-career-vline"></div>
-              </div>
-              <div class="m1-career-content">
-                <span class="m1-career-period">2017.06 ~ 2018.06</span>
-                <p class="m1-career-company">(주)디엘티</p>
-                <span class="m1-career-role">디자인팀 팀원</span>
-                <ul class="m1-career-tasks">
-                  <li>제품 브랜딩 디자인</li>
-                  <li>웹 상세페이지 디자인</li>
-                  <li>제품 패키지 및 설명서 디자인</li>
-                  <li>웹 디자인 및 제품 배너와 포스터 디자인</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="m1-career-item">
-              <div class="m1-career-line">
-                <div class="m1-career-dot"></div>
-                <div class="m1-career-vline"></div>
-              </div>
-              <div class="m1-career-content">
-                <span class="m1-career-period">2014.09 ~ 2016.12</span>
-                <p class="m1-career-company">(주)도너랜드</p>
-                <span class="m1-career-role">디자인팀 주임</span>
-                <ul class="m1-career-tasks">
-                  <li>클레이 제품 기획 및 개발</li>
-                  <li>제품 브랜딩 디자인</li>
-                  <li>제품 패키지 및 설명서 디자인</li>
-                  <li>인쇄물 및 부자재 발주</li>
-                </ul>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- ── 우측: 스킬 + 자격증 + 키워드 ── -->
-        <div class="modal1-col-right">
-
-          <!-- 스킬 -->
-          <div class="m1-section">
-            <div class="m1-section-head">Skill</div>
-            <div class="m1-skill-grid">
-              <!-- Photoshop — CDN 아이콘 이미지 -->
-              <div class="m1-skill-icon">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-original.svg"
-                     alt="Photoshop"
-                     onerror="this.parentNode.innerHTML='<div class=\'m1-skill-icon-fallback\' style=\'background:#001E36;color:#31A8FF\'>Ps</div>'">
-              </div>
-              <!-- Illustrator -->
-              <div class="m1-skill-icon">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/illustrator/illustrator-plain.svg"
-                     alt="Illustrator"
-                     onerror="this.parentNode.innerHTML='<div class=\'m1-skill-icon-fallback\' style=\'background:#1C1C1C;color:#FF9A00\'>Ai</div>'">
-              </div>
-              <!-- InDesign -->
-              <div class="m1-skill-icon">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Adobe_InDesign_CC_icon.svg"
-                     alt="InDesign"
-                     onerror="this.parentNode.innerHTML='<div class=\'m1-skill-icon-fallback\' style=\'background:#1C0B1B;color:#FF3366\'>Id</div>'">
-              </div>
-              <!-- Premiere -->
-              <div class="m1-skill-icon">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg"
-                     alt="Premiere Pro"
-                     onerror="this.parentNode.innerHTML='<div class=\'m1-skill-icon-fallback\' style=\'background:#0D0929;color:#9999FF\'>Pr</div>'">
-              </div>
-              <!-- Figma -->
-              <div class="m1-skill-icon">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg"
-                     alt="Figma"
-                     onerror="this.parentNode.innerHTML='<div class=\'m1-skill-icon-fallback\' style=\'background:#1E1E1E\'>Figma</div>'">
-              </div>
-              <!-- HTML5 -->
-              <div class="m1-skill-icon">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
-                     alt="HTML5"
-                     onerror="this.parentNode.innerHTML='<div class=\'m1-skill-icon-fallback\' style=\'background:#E44D26;color:white\'>HTML5</div>'">
-              </div>
-              <!-- CSS3 -->
-              <div class="m1-skill-icon">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"
-                     alt="CSS3"
-                     onerror="this.parentNode.innerHTML='<div class=\'m1-skill-icon-fallback\' style=\'background:#264DE4;color:white\'>CSS3</div>'">
-              </div>
-              <!-- JavaScript -->
-              <div class="m1-skill-icon">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
-                     alt="JavaScript"
-                     onerror="this.parentNode.innerHTML='<div class=\'m1-skill-icon-fallback\' style=\'background:#F7DF1E;color:#33383D\'>JS</div>'">
-              </div>
-            </div>
-          </div>
-
-          <!-- 자격증 -->
-          <div class="m1-section">
-            <div class="m1-section-head">License</div>
-            <div class="m1-license-grid">
-              <div class="m1-license-tag">웹디자인기능사</div>
-              <div class="m1-license-tag">GTQ 1급</div>
-              <div class="m1-license-tag">GTQi1급</div>
-              <div class="m1-license-tag">GTQid 1급</div>
-              <div class="m1-license-tag single">운전면허증 2종</div>
-            </div>
-          </div>
-
-          <!-- 키워드 -->
-          <div class="m1-section">
-            <div class="m1-section-head">Keyword</div>
-            <div class="m1-keyword-grid">
-              <div class="m1-keyword-tag">적응력</div>
-              <div class="m1-keyword-tag">차분한</div>
-              <div class="m1-keyword-tag">꼼꼼한</div>
-              <div class="m1-keyword-tag">성실한</div>
-              <div class="m1-keyword-tag">솔직한</div>
-              <div class="m1-keyword-tag">마감 엄수</div>
-            </div>
-          </div>
-
-        </div>
-      </div><!-- /modal1-layout -->
+        <img class="modal1-img-pc" src="./images/pc.webp" alt="한다휘 이력서 PC버전">
+        <img class="modal1-img-mo" src="./images/mo.webp" alt="한다휘 이력서 모바일버전">
+      </div>
     </div>
   </div>
 
@@ -1696,7 +1495,7 @@
           </div>
 
           <p class="modal5-desc">
-            우리농산물마켓은 생산자가 소비자에게 바로 판매하여 신선한 농작물을 좋은 가격에 살 수 있는 농산물마켓입니다.<br><br>
+            우리농산물마켓은 생산자가 소비자에게 바로 판매하여 신선한 농작물을 좋은 가격에 살 수 있는 농산물마켓입니다.<br>
             반응형으로 작업하여 여러 디바이스에서 쇼핑할 수 있도록 만들었습니다.
           </p>
 
