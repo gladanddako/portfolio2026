@@ -841,16 +841,28 @@
       display: flex; align-items: center; gap: 10px;
       font-size: 12px; font-weight: 500; color: var(--ink);
       padding: 8px 0;
+      border-bottom: 1px solid var(--border);
     }
-    .m1-info-icon { display: none; }
+    .m1-info-row:last-child { border-bottom: none; }
+    .m1-info-icon {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: var(--card-bg);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .m1-info-icon svg { opacity: .6; }
     .m1-info-text { line-height: 1.4; }
 
     /* 학력 */
     .m1-edu-item {
       display: flex; gap: 14px; align-items: flex-start;
-      padding: 4px 0;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
     }
-    .m1-edu-dot { display: none; }
+    .m1-edu-item:last-child { border-bottom: none; }
+    .m1-edu-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0; margin-top: 5px;
+    }
     .m1-edu-period {
       font-size: 10.5px; font-weight: 700; color: var(--ink-light);
       letter-spacing: .04em; display: block; margin-bottom: 2px;
@@ -869,14 +881,6 @@
       border-right: 1px solid var(--border);
     }
 
-    /* PC 커리어 2단 그리드 */
-    .m1-career-timeline {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0 24px;
-      align-items: start;
-    }
-
     /* 타임라인 스타일 경력 */
     .m1-career-timeline { display: flex; flex-direction: column; }
     .m1-career-item {
@@ -886,9 +890,23 @@
     }
     .m1-career-item:last-child { padding-bottom: 0; }
 
-    .m1-career-line { display: none; }
-    .m1-career-dot { display: none; }
-    .m1-career-vline { display: none; }
+    /* 왼쪽 타임라인 선 + 점 */
+    .m1-career-line {
+      display: flex; flex-direction: column; align-items: center;
+      flex-shrink: 0; width: 16px;
+    }
+    .m1-career-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      outline: 2px solid var(--accent);
+      flex-shrink: 0; margin-top: 4px;
+    }
+    .m1-career-vline {
+      width: 1px; flex: 1; background: var(--border);
+      margin-top: 6px;
+    }
+    .m1-career-item:last-child .m1-career-vline { display: none; }
 
     /* 오른쪽 내용 */
     .m1-career-content { flex: 1; }
@@ -916,8 +934,10 @@
       font-size: 12px; font-weight: 500; color: var(--ink);
       line-height: 1.55; padding-left: 12px; position: relative;
     }
-    .m1-career-tasks li::before { display: none; }
-    .m1-career-tasks li { padding-left: 0; }
+    .m1-career-tasks li::before {
+      content: '–'; position: absolute; left: 0;
+      color: var(--accent); font-weight: 700;
+    }
 
     /* ══ 우측 컬럼 ══ */
     .modal1-col-right { padding-left: 28px; }
@@ -954,10 +974,11 @@
     .m1-license-tag {
       font-size: 11px; font-weight: 700; text-align: center;
       padding: 10px 6px; border-radius: var(--r-sm);
-      background: transparent; color: var(--ink);
-      border: none;
-      letter-spacing: -.01em;
+      background: var(--card-bg); color: var(--ink);
+      border: 1.5px solid var(--border);
+      letter-spacing: -.01em; transition: background .2s, border-color .2s;
     }
+    .m1-license-tag:hover { background: var(--accent); border-color: var(--accent); }
     .m1-license-tag.single { grid-column: 1 / 2; }
 
     /* 키워드 */
@@ -969,8 +990,10 @@
       font-size: 11px; font-weight: 700; text-align: center;
       padding: 10px 4px; border-radius: var(--r-sm);
       background: transparent; color: var(--ink);
-      border: none;
+      border: 1.5px solid var(--accent);
+      transition: background .2s;
     }
+    .m1-keyword-tag:hover { background: var(--accent); }
 
     /* ══ 반응형 ══ */
     @media (max-width: 900px) {
@@ -993,7 +1016,6 @@
         padding: 0 0 20px 0; margin-bottom: 20px;
       }
       .modal1-col-right { padding-left: 0; }
-      .m1-career-timeline { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 480px) {
