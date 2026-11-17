@@ -75,12 +75,45 @@
       padding: 36px 48px 44px;
       position: relative;
       overflow: hidden;
-      background: url(./images/main_pc.jpg) no-repeat center/cover;
+      --hero-image: url(./images/main_pc.jpg);
+      background: #edf6fa;
+      isolation: isolate;
     }
 
-    /* decorative ring */
+    /* Original image floats independently of the fixed text. */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: -1.5%;
+      z-index: -2;
+      pointer-events: none;
+      background: var(--hero-image) no-repeat center / cover;
+      animation: heroFloat 16s ease-in-out infinite;
+      will-change: transform;
+    }
     .hero::after {
-      display: none;
+      content: '';
+      position: absolute;
+      inset: -12%;
+      z-index: -1;
+      pointer-events: none;
+      background: radial-gradient(ellipse at 32% 35%, rgba(255,255,255,.85), rgba(255,255,255,0) 55%);
+      mix-blend-mode: screen;
+      animation: heroLight 12s ease-in-out infinite;
+    }
+    @keyframes heroFloat {
+      0%, 100% { transform: translate3d(-.3%, .2%, 0) scale(1.008); }
+      50% { transform: translate3d(.3%, -.35%, 0) scale(1.018); }
+    }
+    @keyframes heroLight {
+      0%, 100% { opacity: .05; transform: translate3d(-3%, 1%, 0); }
+      50% { opacity: .18; transform: translate3d(4%, -2%, 0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero::before, .hero::after { animation: none; will-change: auto; }
+      .hero::after { opacity: .05; }
+      .hero .fade-up { animation: none; opacity: 1; transform: none; }
+      .hero .scroll-arrow { animation: none; }
     }
 
     .hero-nav {
@@ -240,7 +273,7 @@
     }
     @media (max-width: 768px) {
     .hero {
-        background-image: url(./images/main_m.jpg);
+        --hero-image: url(./images/main_m.jpg);
       }
       .hero-body {
         text-align: center;
@@ -1109,7 +1142,7 @@
 
     @media (max-width: 680px) {
       .hero { padding: 24px 24px 32px; }
-      .hero::after { display: none; }
+      .hero::after { animation-duration: 14s; }
       .hero-footer {
         justify-content: flex-start;
       }
@@ -1395,7 +1428,7 @@
           './images/port/offire-process-01.webp',
           './images/port/offire-process-02.webp',
           './images/port/offire-process-03.webp',
-          './images/port/offire-process-04.webp'
+          './images/port/offire-process-04.webp?v=20261117-2355'
         ]
       },
       {
