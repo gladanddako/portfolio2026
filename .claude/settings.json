@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open ~/Desktop/AI_Project/family-app-prototype3.html)",
+      "Bash(open ~/Desktop/AI_Project/family-app-prototype4.html)",
+      "Bash(ipconfig getifaddr *)",
+      "Bash(command -v ruby)",
+      "Bash(ruby -v)",
+      "Bash(command -v npx)",
+      "Bash(command -v php)",
+      "Bash(ruby -run -e httpd /Users/dahwi/Desktop/AI_Project -p 8000 --bind-address=0.0.0.0)",
+      "Read(//tmp/claude-501/**)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" \"http://172.30.1.20:8000/family-app-prototype4.html\")",
+      "Bash(curl -s -I \"http://172.30.1.20:8000/family-app-prototype4.html\")",
+      "Bash(curl -s \"http://172.30.1.20:8000/family-app-prototype4.html\")",
+      "Bash(pkill -f \"ruby -run -e httpd\")",
+      "Bash(ruby /private/tmp/claude-501/-Users-dahwi-Documents-GitHub-portfolio2026/e915d24b-4574-4cc7-9fd0-bfff7977de71/scratchpad/nocache_server.rb)",
+      "Bash(command -v node)",
+      "Bash(which osascript *)",
+      "Read(//System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/**)",
+      "Bash(perl -0pe 's/\\\\ninit\\\\\\(\\\\\\);\\\\s*$/\\\\nfitStatValues=function\\(\\){};\\\\ninit\\(\\);\\\\n/' /private/tmp/claude-501/-Users-dahwi-Documents-GitHub-portfolio2026/e915d24b-4574-4cc7-9fd0-bfff7977de71/scratchpad/body.js)",
+      "Bash(osascript -l JavaScript /private/tmp/claude-501/-Users-dahwi-Documents-GitHub-portfolio2026/e915d24b-4574-4cc7-9fd0-bfff7977de71/scratchpad/harness.js)",
+      "Bash(grep -n \"DB = { members\\\\|DB={ members\\\\|isPro:false, dark:false }\" family-app-prototype4.html)",
+      "Bash(open /Users/dahwi/Desktop/AI_Project/family-app-prototype4.html)",
+      "Bash(sort -t: -k2)",
+      "Bash(awk -F: '{print $2\" @\"$1}')"
+    ],
+    "additionalDirectories": [
+      "/Users/dahwi/Desktop/AI_Project"
+    ]
+  }
+}
