@@ -1040,124 +1040,6 @@
     }
 
     /* ══════════════════════════════════════════════════════════
-       CARD 5 MODAL — 우리농산물마켓 전용
-    ══════════════════════════════════════════════════════════ */
-    #modal5Overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(51,56,61,.72);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 5vh 5vw;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity .4s var(--ease-out), visibility .4s;
-    }
-    #modal5Overlay.open { opacity: 1; visibility: visible; }
-
-    .modal5 {
-      background: #ffffff;
-      border-radius: var(--r-lg);
-      width: 100%;
-      max-width: 100%;
-      height: 100%;
-      max-height: 100%;
-      overflow-y: auto;
-      position: relative;
-      transform: translateY(32px) scale(.97);
-      transition: transform .45s var(--ease-out);
-    }
-    #modal5Overlay.open .modal5 { transform: translateY(0) scale(1); }
-    .modal5::-webkit-scrollbar { width: 4px; }
-    .modal5::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
-
-    .modal5-close {
-      position: sticky; top: 0; z-index: 10;
-      display: flex; justify-content: flex-end;
-      padding: 16px 16px 0; pointer-events: none;
-    }
-    .modal5-close button {
-      pointer-events: all;
-      width: 40px; height: 40px; border-radius: 50%;
-      border: 1px solid var(--border);
-      background: rgba(244,250,255,.85);
-      backdrop-filter: blur(8px);
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--ink);
-      transition: background .2s, transform .2s;
-    }
-    .modal5-close button:hover { background: var(--ink); color: var(--bg); transform: rotate(90deg); }
-
-    .modal5-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      padding: 0 32px 36px;
-      align-items: center;
-      min-height: calc(100% - 56px);
-    }
-    @media (max-width: 768px) {
-      .modal5-layout { grid-template-columns: 1fr; padding: 0 14px 24px; align-items: start; }
-    }
-
-    .modal5-img-col { padding-right: 32px; padding-top: 4px; }
-    @media (max-width: 768px) { .modal5-img-col { padding-right: 0; padding-bottom: 18px; } }
-
-    .modal5-img-wrap {
-      width: 100%; aspect-ratio: 4 / 3;
-      border-radius: var(--r-md);
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 12px; overflow: hidden;
-      } 
-    .modal5-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .modal5-img-placeholder-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); }
-
-    .modal5-info-col {
-      padding-top: 4px;
-      border-left: 1px solid var(--border);
-      padding-left: 32px;
-      display: flex; flex-direction: column; gap: 22px;
-    }
-    @media (max-width: 768px) { .modal5-info-col { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 18px; gap: 14px; } }
-
-    .modal5-project-title {
-      font-size: clamp(22px, 2.6vw, 32px);
-      font-weight: 800; letter-spacing: -.03em;
-      color: #2E7D54; line-height: 1.2;
-    }
-
-    .modal5-meta-table { display: flex; flex-direction: column; gap: 12px; }
-    .modal5-meta-row { display: grid; grid-template-columns: 80px 1fr; gap: 12px; align-items: start; }
-    .modal5-meta-key { font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--ink-light); padding-top: 2px; }
-    .modal5-meta-val { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.55; }
-
-    .modal5-desc {
-      font-size: 13.5px; line-height: 1.8;
-      color: var(--ink-light); word-break: keep-all;
-      border-top: 1px solid var(--border); padding-top: 20px;
-    }
-
-    .modal5-btns { display: flex; gap: 12px; padding-top: 4px; }
-    .modal5-btn {
-      flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 13px 18px; border-radius: var(--r-sm);
-      font-size: 13px; font-weight: 700; letter-spacing: .03em;
-      text-decoration: none; cursor: pointer;
-      transition: background .2s, color .2s, transform .2s var(--ease-out), box-shadow .2s;
-      border: none;
-    }
-    .modal5-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(51,56,61,.12); }
-    .modal5-btn-outline { background: var(--card-bg); color: var(--ink); border: 1px solid var(--border); }
-    .modal5-btn-outline:hover { background: var(--card-hover); }
-    .modal5-btn-fill { background: #2E7D54; color: #fff; }
-    .modal5-btn-fill:hover { background: #246644; }
-
-    /* ══════════════════════════════════════════════════════════
        FOOTER
     ══════════════════════════════════════════════════════════ */
     .site-footer {
@@ -1269,11 +1151,10 @@
       .card-2, .card-3, .card-4,.card-5, .card-6, .card-7 { min-height: 260px; }
 
       /* 모바일: 모달 overlay 여백 최소화 → 거의 풀스크린 */
-      .modal-overlay, #modal1Overlay, #modal5Overlay { padding: 10px; }
-      .modal, .modal1, .modal5 { border-radius: var(--r-md); }
+      .modal-overlay, #modal1Overlay { padding: 10px; }
+      .modal, .modal1 { border-radius: var(--r-md); }
       .modal-body { padding: 0 14px 24px; }
       .modal-title { font-size: 20px; }
-      .modal5-project-title { font-size: 20px; }
 
       .site-footer {
         flex-direction: column;
@@ -1386,10 +1267,10 @@
       </article>
 
       <!-- Card 5 -->
-      <article class="card card-5" data-index="4" onclick="openModal5()">
+      <article class="card card-5" data-index="4" onclick="openModal(4)">
         <div class="card-work-meta">
-          <p class="work-title">Fresh Agri-Web Design</p>
-          <p class="work-cat">농산물 브랜딩을 기반으로 한 반응형 웹디자인</p>
+          <p class="work-title">OFFIRE · AI Visual Production</p>
+          <p class="work-cat">AI를 활용한 소화기 브랜드 비주얼 제작</p>
         </div>
         <div class="card-overlay" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
           <span class="view-hint">
@@ -1458,74 +1339,7 @@
     </div>
   </div>
 
-  <!-- ── CARD 5 MODAL — 우리농산물마켓 ────────────────────── -->
-  <div id="modal5Overlay" onclick="handleModal5OverlayClick(event)">
-    <div class="modal5" id="modal5" role="dialog" aria-modal="true">
-      <div class="modal5-close">
-        <button onclick="closeModal5()" aria-label="닫기">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-          </svg>
-        </button>
-      </div>
-      <div class="modal5-layout">
-        <!-- 좌측: 이미지 -->
-        <div class="modal5-img-col">
-          <div class="modal5-img-wrap" id="modal5ImgWrap">
-            <img src="images/web_mockup_01.webp" alt="우리농산물마켓">
-          </div>
-        </div>
-        <!-- 우측: 정보 -->
-        <div class="modal5-info-col">
-          <p class="modal5-project-title">우리농산물마켓</p>
-
-          <div class="modal5-meta-table">
-            <div class="modal5-meta-row">
-              <span class="modal5-meta-key">제작기간</span>
-              <span class="modal5-meta-val">2024.09.01 ~ 2024.09.22</span>
-            </div>
-            <div class="modal5-meta-row">
-              <span class="modal5-meta-key">기여도</span>
-              <span class="modal5-meta-val">100% — 웹 사이트 기획, 디자인, 구현</span>
-            </div>
-            <div class="modal5-meta-row">
-              <span class="modal5-meta-key">사용툴</span>
-              <span class="modal5-meta-val">Photoshop, Illustrator, Figma, HTML, CSS, JS</span>
-            </div>
-          </div>
-
-          <p class="modal5-desc">
-            우리농산물마켓은 생산자가 소비자에게 바로 판매하여 신선한 농작물을 좋은 가격에 살 수 있는 농산물마켓입니다.<br>
-            반응형으로 작업하여 여러 디바이스에서 쇼핑할 수 있도록 만들었습니다.
-          </p>
-
-          <div class="modal5-btns">
-            <a class="modal5-btn modal5-btn-outline"
-               href="#" target="_blank" rel="noopener noreferrer"
-               onclick="return handleModal5Link(event, 'plan')">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <rect x="2" y="1" width="10" height="12" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
-                <path d="M4 5h6M4 7.5h6M4 10h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-              </svg>
-              기획서 보기
-            </a>
-            <a class="modal5-btn modal5-btn-fill"
-               href="#" target="_blank" rel="noopener noreferrer"
-               onclick="return handleModal5Link(event, 'site')">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.4"/>
-                <path d="M7 1.5C5.5 3 4.5 5 4.5 7s1 4 2.5 5.5M7 1.5C8.5 3 9.5 5 9.5 7s-1 4-2.5 5.5" stroke="currentColor" stroke-width="1.4"/>
-                <path d="M1.5 7h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-              </svg>
-              웹 사이트 보기
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── MODAL (기존 — cards 1~4, 6~7용) ──────────────────── -->
+  <!-- ── IMAGE MODAL — cards 2~7용 ──────────────────── -->
   <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
     <div class="modal" id="modal" role="dialog" aria-modal="true">
       <div class="modal-close">
@@ -1577,9 +1391,9 @@
         imgs: ['./images/port/02.webp','./images/port/03.webp','./images/port/04.webp']
       },
       {
-        cat: 'Fresh Agri-Web Design',
-        title: 'Project Web Design',
-        imgs: []
+        cat: 'OFFIRE · AI Visual Production',
+        title: 'Project OFFIRE',
+        imgs: ['./images/port/05.webp', './images/port/005webp.webp']
       },
       {
         cat: 'Clay Packaging',
@@ -1652,48 +1466,10 @@
       if (e.target === overlay1) closeModal1();
     }
 
-    // ── Card 5 전용 모달 ──
-    const overlay5 = document.getElementById('modal5Overlay');
-    const modal5El = document.getElementById('modal5');
-
-    // 링크 URL 설정 (여기에 실제 링크를 넣으세요)
-    const card5Links = {
-      plan: 'https://www.figma.com/proto/gRmowkP8ANwDLquwm8ikCF/%EC%8A%A4%EB%A7%88%ED%8A%B8%EB%AC%B8%ED%99%94%EC%95%B1_UI%EB%94%94%EC%9E%90%EC%9D%B8?node-id=1-2&node-type=canvas&t=uqWBG3cfafHs4ZjV-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',   // ← 기획서 링크로 교체: 'https://...'
-      site: 'https://gladanddako.github.io/portfolio/woori/'    // ← 웹사이트 링크로 교체: 'https://...'
-    };
-
-    function openModal5() {
-      modal5El.scrollTop = 0;
-      overlay5.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal5() {
-      overlay5.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    function handleModal5OverlayClick(e) {
-      if (e.target === overlay5) closeModal5();
-    }
-
-    function handleModal5Link(e, type) {
-  const url = card5Links[type];
-  if (!url || url === '#') {
-    e.preventDefault();
-    alert(type === 'plan' ? '기획서 링크를 card5Links.plan에 입력하세요.' : '웹사이트 링크를 card5Links.site에 입력하세요.');
-    return false;
-  }
-  e.preventDefault();
-  window.open(url, '_blank');
-  return false;
-}
-
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
         closeModal();
         closeModal1();
-        closeModal5();
       }
     });
 
